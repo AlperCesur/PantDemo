@@ -1,0 +1,75 @@
+﻿@model List<LoginRegistrationInMVCWithDatabase.Models.tbl_Buildings>
+@{
+    ViewBag.Title = "Buildings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/sweetalert.min.js"></script>
+
+@if (TempData["addBuilding"] != null)
+{
+    <script>
+        swal("Building is added", "", "success");
+    </script>
+}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Buildings</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+
+                <h4><i class="fas fa-table"></i>Buildings</h4> <br />
+                @Html.ActionLink("Add New Building", "Yeni", null, new { @class = "btn btn-primary mx-4" })
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Building Type</th>
+                                <th>Building Cost</th>
+                                <th>Construction Time</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var veri in Model)
+                            {
+                                <tr>
+                                    <td>@veri.BuildingType"</td>
+                                    <td>@veri.BuildingCost</td>
+                                    <td>@veri.ConstructionTime</td>
+                                    <td>
+                                        <div class="modal fade" id="exampleModalCenter_@veri.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="switch">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
